@@ -1,0 +1,8 @@
+{
+  "name": "krazyplanes-server",
+  "version": "0.0.1",
+  "devDependencies": {
+    "socket.io": "~0.9.16",
+    "mongoose": "~3.8.8"
+  }
+}
