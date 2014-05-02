@@ -4,9 +4,9 @@ var mongoose = require('mongoose');
 var server = http.createServer(function(req, res) {
 	res.writeHead(200, {'Content-Type': 'text/plain'});
 	res.end('Hello World');
-}).listen(8080, '192.237.247.72');
+}).listen(8080, '127.0.0.1');
 
-mongoose.connect('mongodb://192.237.247.72/krazyplanes', function(err) {
+mongoose.connect('mongodb://localhost/krazyplanes', function(err) {
 	if (!err) {
 		console.log("connected to mongodb");
 	} else {
