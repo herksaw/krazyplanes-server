@@ -6,13 +6,20 @@ var server = http.createServer(function(req, res) {
 	res.end('Hello World');
 }).listen(8080, '127.0.0.1');
 
-mongoose.connect('mongodb://localhost/krazyplanes', function(err) {
+mongoose.connect('mongodb://127.0.0.1:8080/krazyplanes', function(err) {
 	if (!err) {
 		console.log("connected to mongodb");
 	} else {
 		throw err;
 	}
 });
+
+/*
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error: '));
+db.once('open', function() {	
+})
+*/
 
 var PlayerSchema = mongoose.Schema({
 	name: String,
