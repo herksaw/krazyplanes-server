@@ -24,24 +24,26 @@ db.once('open', function() {
 var PlayerSchema = mongoose.Schema({
 	name: String,
 	score: Number,
-	id: Number
+	fbid: Number
 });
 
 var Player = mongoose.model('Player', PlayerSchema);
 
 var io = require('socket.io').listen(server);
-
+c
 io.sockets.on('connection', function(socket) {
+	onsole.log("connection")
 	socket.on('player_send', function(data) {
+		console.log("player_send")
 		jsonData = JSON.parse(data);
 		var player = new Player({
 			name: jsonData.name,
 			score: jsonData.score,
-			id: data.id
+			fbid: jsonData.fbid
 		});
-		console.log("player_send")
-		Player.findOne({ 'id': player.id }, function(err, foundPlayer) {
-			if (!err) {
+		
+		Player.findOne({ 'fbid': player.fbid }, function(err, foundPlayer) {
+			if (foundPlayer !== null) {
 				if (foundPlayer.score < player.score) {
 					foundPlayer.score = player.score;
 					console.log("Resaved")
