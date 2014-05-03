@@ -30,9 +30,9 @@ var PlayerSchema = mongoose.Schema({
 var Player = mongoose.model('Player', PlayerSchema);
 
 var io = require('socket.io').listen(server);
-c
+
 io.sockets.on('connection', function(socket) {
-	onsole.log("connection")
+	console.log("connection")
 	socket.on('player_send', function(data) {
 		console.log("player_send")
 		jsonData = JSON.parse(data);
