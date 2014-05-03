@@ -6,7 +6,7 @@ var server = http.createServer(function(req, res) {
 	res.end('Hello World');
 }).listen(8080, '127.0.0.1');
 
-mongoose.connect('mongodb://127.0.0.1:8080/krazyplanes', function(err) {
+mongoose.connect('mongodb://127.0.0.1:27017/krazyplanes', function(err) {
 	if (!err) {
 		console.log("connected to mongodb");
 	} else {
@@ -39,11 +39,12 @@ io.sockets.on('connection', function(socket) {
 			score: jsonData.score,
 			id: data.id
 		});
-
+		console.log("player_send")
 		Player.findOne({ 'id': player.id }, function(err, foundPlayer) {
 			if (!err) {
 				if (foundPlayer.score < player.score) {
 					foundPlayer.score = player.score;
+					console.log("Resaved")
 					foundPlayer.save(function(err, foundPlayer) {
 						if (err) {
 							return console.error(err);
@@ -51,6 +52,7 @@ io.sockets.on('connection', function(socket) {
 					});
 				}
 			} else {
+				console.log("Saved")
 				player.save(function(err, player) {
 					if (err) {
 						return console.error(err);
