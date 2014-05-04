@@ -6,7 +6,7 @@ var server = http.createServer(function(req, res) {
 	res.end('Hello World');
 }).listen(8080, '192.237.247.72'); //192.237.247.72
 
-mongoose.connect('mongodb://192.237.247.72:27017/krazyplanes', function(err) {
+mongoose.connect('mongodb://127.0.0.1:27017/krazyplanes', function(err) {
 	if (!err) {
 		console.log("connected to mongodb");
 	} else {
